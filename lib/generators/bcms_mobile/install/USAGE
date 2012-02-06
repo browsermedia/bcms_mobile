@@ -1,0 +1,10 @@
+Description:
+    Installs the bcms_mobile module.
+
+Example:
+    rails generate bcms_mobile:install
+
+    This will:
+		1. Copy any migrations from the gem into the project.
+		2. Add the routes to the config/routes.rb
+
