@@ -11,6 +11,7 @@ group :test do
   # gem 'cucumber-browsercms' # This is what I want
   gem 'bcms_support', :path=>"~/projects/bcms_support"
 
+  gem 'mocha'
   gem 'launchy'
   gem 'factory_girl_rails'
 end

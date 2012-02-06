@@ -29,7 +29,11 @@ module BcmsMobile
           @handled_mobile = true
         end
 
-
+        # Because of caching, CMS pages should only return mobile content on a separate subdomain.
+        def respond_as_mobile?
+          w "Checking the subdomain for #{request.domain} is #{request.subdomain}"
+          request.subdomain == "m"
+        end
 
         private
 
@@ -53,14 +57,8 @@ module BcmsMobile
           w "layout = #{layout}"
 
           respond_to do |format|
-            format.mobile {
-              w "I think this is a mobile request"
-              render :layout => layout, :action => 'show'
-            }
-            format.html {
-              w "I think this is an HTML request"
-              render :layout => layout, :action => 'show'
-            }
+            format.mobile { render :layout => layout, :action => 'show' }
+            format.html { render :layout => layout, :action => 'show' }
           end
           #render :layout => layout, :action => 'show'
         end

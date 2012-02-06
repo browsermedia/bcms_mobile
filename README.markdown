@@ -3,11 +3,12 @@
 ## Features (Completed)
 
 * Developers can define a .mobile.erb template for any existing .html.erb template on a project.
-* Visitors on mobile device, who request a page with a mobile template will get that mobile template.
 * Editors always see the desktop template
+* Mobile assumes a m. subdomain will exist. It will return the mobile template for all requests to pages on that domain.
 
 Caveats:
 * Doesn't work with cached pages.
+* We are no longer relying on Agent Detection. Visitors on mobile device, who request a page that has a mobile template on the main site will see the full content of the page.
 
 
 ## Issues
@@ -17,9 +18,8 @@ Caveats:
 
 ## Features (Possible)
 
-1. Developers should be able to specify a .mobile.erb template for any existing CMS site template.
+1. Extract cucumber-browsercms project (to reduce required setup)
 1. On m.domain.com
-1. If UserAgent = Mobile, then use mobile template.
 1. Allow user to set a preference for mobile vs full site.
 
 
@@ -43,3 +43,12 @@ Apache Mobile Filters - http://webdirect.no/mobile/apache-rewrite-rule-for-iphon
 RailsCast - http://railscasts.com/episodes/199-mobile-devices?view=comments
 
 http://ryanbigg.com/2009/04/how-rails-works-2-mime-types-respond_to/
+http://blog.bigbinary.com/2010/11/23/mime-type-resolution-in-rails.html
+
+## Development
+
+To really test this, you will need to setup POW or some other solution that can handle the multiple subdomains, i.e.
+
+m.bcms-mobile.dev
+www.bcms-mobile.dev
+cms.bcms-mobile.dev
