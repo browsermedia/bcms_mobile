@@ -1,7 +1,11 @@
+# -*- encoding: utf-8 -*-
+$:.push File.expand_path("../lib", __FILE__)
+require "bcms_mobile/version"
+
 Gem::Specification.new do |spec|
   spec.name = "bcms_mobile"
   spec.rubyforge_project = spec.name
-  spec.version = "1.0.0"
+  spec.version = BcmsMobile::VERSION
   spec.summary = "A Bcms Mobile Module for BrowserCMS"
   spec.author = "BrowserMedia" 
   spec.email = "github@browsermedia.com" 

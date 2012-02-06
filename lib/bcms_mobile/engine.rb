@@ -7,6 +7,7 @@ module BcmsMobile
     include Cms::Module
 
     config.to_prepare do
+
       Cms::ContentController.class_eval do
         include BcmsMobile::MobileAware
 
@@ -16,15 +17,15 @@ module BcmsMobile
 
         def print_user_agent
           logger.warn "*" * 20
-          logger.warn "Is mobile request." if respond_as_mobile?
+          #logger.warn "Is mobile request." if respond_as_mobile?
           logger.warn "User Agent: #{request.user_agent}"
         end
 
         def handle_mobile
-          w "respond_as_mobile? '#{respond_as_mobile?}'"
-          w "Before: #{request.formats}"
+          #w "respond_as_mobile? '#{respond_as_mobile?}'"
+          #w "Before: #{request.formats}"
           super
-          w "After Formats? '#{request.formats}'"
+          #w "After Formats? '#{request.formats}'"
           @handled_mobile = true
         end
 
@@ -35,23 +36,35 @@ module BcmsMobile
         def render_page
           handle_mobile && print_user_agent unless handle_mobile_called?
 
-          w "**** Override"
-          w "Request Formats = #{request.formats}"
+          m = "Mobile Request?: "
           if respond_as_mobile?
-            w "Is mobile request"
+            m += "Yes"
           else
-            w "Not Mobile"
+            m += "No"
           end
+          w m
 
-          w "Mime::Type #{Mime::Type.lookup_by_extension(request.parameters[:format]).to_yaml}"
+          mime_type = Mime::Type.lookup_by_extension(request.parameters[:format])
+          w "Mime::Type: :#{mime_type.symbol}" if mime_type
           @_page_route.execute(self) if @_page_route
           prepare_connectables_for_render
 
           layout = @page.layout
           w "layout = #{layout}"
 
-          render :layout => layout, :action => 'show'
+          respond_to do |format|
+            format.mobile {
+              w "I think this is a mobile request"
+              render :layout => layout, :action => 'show'
+            }
+            format.html {
+              w "I think this is an HTML request"
+              render :layout => layout, :action => 'show'
+            }
+          end
+          #render :layout => layout, :action => 'show'
         end
+
 
         # Because of how BrowserCMS's Content Controller's filter chain works,
         # handle_mobile will not be called when users are logged in. So we need explicitly call it before rendering the page

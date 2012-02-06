@@ -13,6 +13,7 @@ Caveats:
 ## Issues
 * What happens if I don't create a mobile template for a page.
 * If .mobile view exists, but no .mobile template, it renders with no layout. (Does not fall back to .html)
+* Not 100% sure why admins ALWAYS see the desktop template (even when viewing as mobile). Probably related to how ContentController stack changes.
 
 ## Features (Possible)
 
