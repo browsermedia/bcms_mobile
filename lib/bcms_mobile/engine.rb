@@ -5,41 +5,16 @@ require 'bcms_mobile/mobile_aware'
 module BcmsMobile
   class Engine < Rails::Engine
     include Cms::Module
-
     config.to_prepare do
 
       Cms::ContentController.class_eval do
         include BcmsMobile::MobileAware
 
-        respond_to_mobile_requests
+        before_filter :print_request_info
 
-        before_filter :print_user_agent
-
-        def print_user_agent
-          logger.warn "*" * 20
-          #logger.warn "Is mobile request." if respond_as_mobile?
-          logger.warn "User Agent: #{request.user_agent}"
-        end
-
-        def handle_mobile
-          #w "respond_as_mobile? '#{respond_as_mobile?}'"
-          #w "Before: #{request.formats}"
-          super
-          #w "After Formats? '#{request.formats}'"
-          @handled_mobile = true
-        end
-
-        # Because of caching, CMS pages should only return mobile content on a separate subdomain.
-        def respond_as_mobile?
-          w "Checking the subdomain for #{request.domain} is #{request.subdomain}"
-          request.subdomain == "m"
-        end
-
-        private
-
-        def render_page
-          handle_mobile && print_user_agent unless handle_mobile_called?
-
+        def print_request_info
+          w "*" * 20
+          w "User Agent: #{request.user_agent}"
           m = "Mobile Request?: "
           if respond_as_mobile?
             m += "Yes"
@@ -50,25 +25,28 @@ module BcmsMobile
 
           mime_type = Mime::Type.lookup_by_extension(request.parameters[:format])
           w "Mime::Type: :#{mime_type.symbol}" if mime_type
+        end
+
+        # Because of caching, CMS pages should only return mobile content on a separate subdomain.
+        def respond_as_mobile?
+          w "Checking the subdomain for #{request.domain} is #{request.subdomain}"
+          request.subdomain == "m"
+        end
+
+        private
+
+        # Overrides core behavior to swap layouts based on whether this is a mobile request or not.
+        def render_page
+
           @_page_route.execute(self) if @_page_route
           prepare_connectables_for_render
 
-          layout = @page.layout
-          w "layout = #{layout}"
+          template = determine_page_template
 
-          respond_to do |format|
-            format.mobile { render :layout => layout, :action => 'show' }
-            format.html { render :layout => layout, :action => 'show' }
-          end
-          #render :layout => layout, :action => 'show'
+          render :layout => template, :action => 'show'
         end
 
 
-        # Because of how BrowserCMS's Content Controller's filter chain works,
-        # handle_mobile will not be called when users are logged in. So we need explicitly call it before rendering the page
-        def handle_mobile_called?
-          @handled_mobile == true
-        end
       end
     end
 

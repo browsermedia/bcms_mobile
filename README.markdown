@@ -2,9 +2,10 @@
 
 ## Features (Completed)
 
-* Developers can define a .mobile.erb template for any existing .html.erb template on a project.
+* Developers can define a mobile template for any existing .html.erb template on a project. These template are named the same as the existing templates, but are placed in a separate layouts/mobile directory.
 * Editors always see the desktop template
 * Mobile assumes a m. subdomain will exist. It will return the mobile template for all requests to pages on that domain.
+* If page uses a template which has no mobile counterpart, it will display using its normal template.
 
 Caveats:
 * Doesn't work with cached pages.
@@ -12,8 +13,6 @@ Caveats:
 
 
 ## Issues
-* What happens if I don't create a mobile template for a page.
-* If .mobile view exists, but no .mobile template, it renders with no layout. (Does not fall back to .html)
 * Not 100% sure why admins ALWAYS see the desktop template (even when viewing as mobile). Probably related to how ContentController stack changes.
 
 ## Features (Possible)
@@ -44,6 +43,7 @@ RailsCast - http://railscasts.com/episodes/199-mobile-devices?view=comments
 
 http://ryanbigg.com/2009/04/how-rails-works-2-mime-types-respond_to/
 http://blog.bigbinary.com/2010/11/23/mime-type-resolution-in-rails.html
+Verify if views exist - http://stackoverflow.com/questions/2853355/check-if-a-layout-exists-in-rails
 
 ## Development
 

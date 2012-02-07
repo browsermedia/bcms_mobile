@@ -2,8 +2,15 @@ Given /^the homepage should exist$/ do
   assert_equal "Home", Page.find_by_path("/").name
 end
 
-Given /^a page exists at \/mobile\-page$/ do
-  @page = Factory(:published_page, :path=>"/mobile-page")
+Given /^a page exists at ([\/|\w|-]+)$/ do |path|
+  @page = Factory(:published_page, :path=>path)
+  content = Factory(:html_block, :content=>"Mobile Content")
+  @page.add_content(content)
+  @page.publish!
+end
+
+Given /^a page exists at (.+) with a desktop only template$/ do |path|
+  @page = Factory(:published_page, :path=>path, :template_file_name=>"desktop-only.html.erb")
   content = Factory(:html_block, :content=>"Mobile Content")
   @page.add_content(content)
   @page.publish!

@@ -9,7 +9,7 @@ Feature:
     When they request /mobile-page
     Then they should see the desktop content
 
-  Scenario: Visitors to mobile site get mobile pages
+  Scenario: Browsing mobile site pages
     Given a user is browsing the mobile site
     When they request /mobile-page
     Then they should see the mobile template
@@ -18,6 +18,12 @@ Feature:
     Given a user is browsing the desktop site
     And they are using an iPhone
     When they request /mobile-page
+    Then they should see the desktop content
+
+  Scenario: Browsing a page on mobile site without a mobile template
+    Given a page exists at /not-mobile with a desktop only template
+    And a user is browsing the mobile site
+    When they request /not-mobile
     Then they should see the desktop content
 
 
