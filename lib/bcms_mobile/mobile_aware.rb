@@ -1,4 +1,16 @@
 module BcmsMobile
+
+  module MobileHelpers
+
+    def full_site_url
+      url_for(:host=>SITE_DOMAIN, :prefer_full_site=>true)
+    end
+
+    def mobile_site_url
+      url_for(:host=>SITE_DOMAIN, :prefer_mobile_site=>true)
+    end
+  end
+
   module MobileAware
 
     def w(m)

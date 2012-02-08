@@ -1,4 +1,6 @@
-SITE_DOMAIN="localhost:3000"
+SITE_DOMAIN="www.mobile.local"
+MOBILE_SITE_DOMAIN="m.mobile.local"
+
 BcmsMobile::Application.configure do
   config.action_controller.page_cache_directory = File.join(Rails.root, 'public', 'cache')
   # Settings specified here will take precedence over those in config/application.rb

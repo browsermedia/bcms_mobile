@@ -1,4 +1,7 @@
-SITE_DOMAIN="localhost:3000"
+SITE_DOMAIN="www.mobile.local"
+MOBILE_SITE_DOMAIN="m.mobile.local"
+
+
 BcmsMobile::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 

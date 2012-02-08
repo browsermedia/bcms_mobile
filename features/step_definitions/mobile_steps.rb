@@ -50,3 +50,10 @@ end
 When /^they are using an iPhone$/ do
   request_as_iphone
 end
+
+Given /^a cms editor is logged in$/ do
+  visit '/cms/login'
+  fill_in 'login', :with=>'cmsadmin'
+  fill_in 'password', :with=>'cmsadmin'
+  click_button 'LOGIN'
+end

@@ -26,5 +26,15 @@ Feature:
     When they request /not-mobile
     Then they should see the desktop content
 
+  Scenario: Editors can see mobile version of page
+    Given a cms editor is logged in
+    When they request /mobile-page
+    Then they should see the desktop content
+    When they request /mobile-page?template=mobile
+    Then they should see the mobile template
 
+  Scenario: Guests can't request mobile versions of page
+    Given a user is browsing the desktop site
+    When they request /mobile-page?template=mobile
+    Then they should see the desktop content
 

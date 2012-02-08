@@ -1,10 +1,4 @@
 BcmsMobile::Application.routes.draw do
-  resources :widgets
-
-  resources :desktop_products
-
-  resources :products
-
   routes_for_bcms_mobile
 
   routes_for_browser_cms
