@@ -1,7 +1,9 @@
 SITE_DOMAIN="www.mobile.local"
 
 BcmsMobile::Application.configure do
-  config.action_controller.page_cache_directory = File.join(Rails.root, 'public', 'cache')
+  config.bcms_mobile_cache_directory = File.join(Rails.root, 'public', 'mobile_cache')
+  config.browsercms_cache_directory = File.join(Rails.root, 'public', 'cache')
+  #config.action_controller.page_cache_directory = File.join(Rails.root, 'public', 'cache')
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.

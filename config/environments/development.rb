@@ -1,6 +1,10 @@
 SITE_DOMAIN="www.mobile.local"
 
 BcmsMobile::Application.configure do
+
+  config.bcms_mobile_cache_directory = File.join(Rails.root, 'public', 'mobile_cache')
+  config.browsercms_cache_directory = File.join(Rails.root, 'public', 'cache')
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on

@@ -34,9 +34,9 @@ module BcmsMobile
 
         def configure_cache_directory
           if respond_as_mobile?
-            self.class.page_cache_directory = File.join(Rails.root, 'public', 'mobile_cache')
+            self.class.page_cache_directory = mobile_cache_directory
           else
-            self.class.page_cache_directory = File.join(Rails.root, 'public', 'cache')
+            self.class.page_cache_directory = cms_cache_directory
           end
         end
 
