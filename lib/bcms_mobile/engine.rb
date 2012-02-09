@@ -44,10 +44,17 @@ module BcmsMobile
         # or if a CMS editor wants to see the mobile version of the page.
         def respond_as_mobile?
           w "Checking the subdomain for #{request.domain} is #{request.subdomain}"
-          request.subdomain == "m" || (params[:template] =='mobile' && current_user.able_to?(:edit_content))
+          if params[:template] =='mobile'
+            session[:mobile_mode] = true
+          elsif params[:template] =='full'
+            session[:mobile_mode] = false
+          end
+
+          request.subdomain == "m" || (session[:mobile_mode] == true && current_user.able_to?(:edit_content))
         end
 
         private
+
 
         # Overrides core behavior to swap layouts based on whether this is a mobile request or not.
         def render_page

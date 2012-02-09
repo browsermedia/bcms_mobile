@@ -3,6 +3,7 @@
 ## Features (Completed)
 
 * Developers can define a mobile template for any existing .html.erb template on a project. These template are named the same as the existing templates, but are placed in a separate layouts/mobile directory.
+* Preview as Mobile: Editors should be able to preview the mobile templates. Once in 'mobile' mode, all pages should be viewed as mobile until they disable it.
 * Editors always see the desktop template, unless they add a ?template=mobile parameter to the URL of the page they are viewing.
 * Mobile assumes a m. subdomain will exist. It will return the mobile template for all requests to pages on that domain.
 * If page uses a template which has no mobile counterpart, it will display using its normal template.

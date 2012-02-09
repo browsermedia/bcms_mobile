@@ -33,6 +33,20 @@ Feature:
     When they request /mobile-page?template=mobile
     Then they should see the mobile template
 
+  Scenario: Mobile 'mode' is sticky
+    Given a page exists at /another-page
+    And a cms editor is logged in
+    When they request /another-page?template=mobile
+    Then they request /mobile-page
+    Then they should see the mobile template
+
+  Scenario: Disable Mobile mode
+    Given a page exists at /another-page
+    And a cms editor is logged in
+    When they request /mobile-page?template=mobile
+    Then they request /mobile-page?template=full
+    Then they should see the desktop content
+
   Scenario: Guests can't request mobile versions of page
     Given a user is browsing the desktop site
     When they request /mobile-page?template=mobile
