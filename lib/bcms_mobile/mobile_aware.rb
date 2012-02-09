@@ -9,6 +9,8 @@ module BcmsMobile
     def mobile_site_url
       url_for(:host=>SITE_DOMAIN, :prefer_mobile_site=>true)
     end
+
+
   end
 
   module MobileAware
