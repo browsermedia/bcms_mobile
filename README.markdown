@@ -31,8 +31,10 @@ config.action_controller.page_cache_directory = File.join(Rails.root, 'public', 
 
 Since this module requires a separate top level domain in production (m.), it needs a separate page cache from the 'full' site version. By default, these will be:
 
-public/cache -> Full site cache
-public/mobile_cache -> Mobile Cache
+```
+public/cache # Full site cache
+public/mobile_cache # Mobile Cache
+```
 
 To configure these directories, you can specify new locations in the production.rb via:
 
@@ -91,9 +93,9 @@ $ powder link bcms-mobile
 
 This will make the following subdomains available for testing.
 
-m.bcms-mobile.dev
-www.bcms-mobile.dev
-cms.bcms-mobile.dev
+- m.bcms-mobile.dev
+- www.bcms-mobile.dev
+- cms.bcms-mobile.dev
 
 ## Testing Agent Redirection with Passenger/Apache
 
