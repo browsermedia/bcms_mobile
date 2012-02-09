@@ -22,8 +22,8 @@ $ rails g cms:install bcms_mobile
 ```
 
 This will add a new directory to the project, `app/views/layouts/mobile`. Delete the following line from your config/production.rb file:
+
 ```
-# Delete this next line as it won't work if you make changes
 config.action_controller.page_cache_directory = File.join(Rails.root, 'public', 'cache')
 ```
 
@@ -51,9 +51,10 @@ To make a mobile template, you can then copy any page template from your `app/vi
 
 Because the module will automatically redirect mobile users to the mobile site, they may want to visit the full site. So make sure they are conveniently placed on both mobile and full templates. You can do this with the following helpers:
 
+```
 <%= link_to "See the Full Site", full_site_url %>
 <%= link_to "See the Mobile Site", mobile_site_url %>
-
+```
 
 ## Development
 
@@ -63,20 +64,18 @@ Because the module will automatically redirect mobile users to the mobile site, 
 
 ### Resources
 
-Mobilette - https://github.com/tscolari/mobylette
-Using m.subdomains - http://erniemiller.org/2011/01/05/mobile-devices-and-rails-maintaining-your-sanity/
-Presentation on Rails for Subdomains - http://www.slideshare.net/alberto.perdomo/rails-for-mobile-devices-conferencia-rails-2011-8613648
-Apache Mobile Filters - http://webdirect.no/mobile/apache-rewrite-rule-for-iphone-users/
-RailsCast - http://railscasts.com/episodes/199-mobile-devices?view=comments
-
-http://ryanbigg.com/2009/04/how-rails-works-2-mime-types-respond_to/
-http://blog.bigbinary.com/2010/11/23/mime-type-resolution-in-rails.html
-Verify if views exist - http://stackoverflow.com/questions/2853355/check-if-a-layout-exists-in-rails
-
-Excellent Cookie Setting solution for Apache: http://www.phillipadsmith.com/2011/11/note-to-self-a-simple-way-to-accomplish-mobile-site-redirection-using-mod-rewrite.html
-Modern Mobile Detection - http://ohryan.ca/blog/2011/01/21/modern-mobile-redirect-using-htaccess/
-Using Apache for User Agent/Detection - http://mobiledrupal.com/simple-apache-configuration-file-mobile-device-detection
-http://ohryan.ca/blog/2011/01/21/modern-mobile-redirect-using-htaccess/
+* Mobilette - https://github.com/tscolari/mobylette
+* Using m.subdomains - http://erniemiller.org/2011/01/05/mobile-devices-and-rails-maintaining-your-sanity/
+* Presentation on Rails for Subdomains - http://www.slideshare.net/alberto.perdomo/rails-for-mobile-devices-conferencia-rails-2011-8613648
+* Apache Mobile Filters - http://webdirect.no/mobile/apache-rewrite-rule-for-iphone-users/
+* RailsCast - http://railscasts.com/episodes/199-mobile-devices?view=comments
+* http://ryanbigg.com/2009/04/how-rails-works-2-mime-types-respond_to/
+* http://blog.bigbinary.com/2010/11/23/mime-type-resolution-in-rails.html
+* Verify if views exist - http://stackoverflow.com/questions/2853355/check-if-a-layout-exists-in-rails
+* Excellent Cookie Setting solution for Apache: http://www.phillipadsmith.com/2011/11/note-to-self-a-simple-way-to-accomplish-mobile-site-redirection-using-mod-rewrite.html
+* Modern Mobile Detection - http://ohryan.ca/blog/2011/01/21/modern-mobile-redirect-using-htaccess/
+* Using Apache for User Agent/Detection - *http://mobiledrupal.com/simple-apache-configuration-file-mobile-device-detection
+* http://ohryan.ca/blog/2011/01/21/modern-mobile-redirect-using-htaccess/
 
 ### Getting setup
 
