@@ -25,7 +25,6 @@
 
 ## Installation
 
-* Add a MOBILE_SITE_DOMAIN to your development and production environments.
 * Add Full and Mobile links to templates. Sometimes mobile users really want to see the full site, so make sure they are conveniently placed on both mobile and full templates.
 * Configure the mobile and full site cache locations
 
