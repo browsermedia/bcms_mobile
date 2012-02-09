@@ -14,7 +14,7 @@ module BcmsMobile
       Cms::ContentController.class_eval do
         include BcmsMobile::MobileAware
 
-        before_filter :print_request_info
+        #before_filter :print_request_info
         before_filter :configure_cache_directory
 
         def print_request_info
@@ -27,9 +27,6 @@ module BcmsMobile
             m += "No"
           end
           w m
-
-          mime_type = Mime::Type.lookup_by_extension(request.parameters[:format])
-          w "Mime::Type: :#{mime_type.symbol}" if mime_type
         end
 
         def configure_cache_directory
@@ -54,11 +51,8 @@ module BcmsMobile
         end
 
         private
-
-
         # Overrides core behavior to swap layouts based on whether this is a mobile request or not.
         def render_page
-
           @_page_route.execute(self) if @_page_route
           prepare_connectables_for_render
           template = determine_page_template
