@@ -16,7 +16,7 @@
         <div class="page_attribute_label">Section:</div>
         <div class="page_attribute_value_container">
           <%= image_tag "cms/page_toolbar/page_toolbar_inset_l.gif", :style => "float: left;" %>
-          <div id="section_link" class="page_attribute_value"><%= link_to h(@page.section.name), cms_sections_path(:page_id => @page), :target => "_top" %></div>
+          <div id="section_link" class="page_attribute_value"><%= link_to h(@page.section.name), cms.sections_path(:page_id => @page), :target => "_top" %></div>
           <%= image_tag "cms/page_toolbar/page_toolbar_inset_r.gif", :style => "float: left;" %>
         </div>
       </div>
@@ -54,7 +54,7 @@
                   :target => "_top" %>
 
       <%= link_to "<span>Assign</span>".html_safe,
-                  new_cms_page_task_path(@page),
+                  cms.new_page_task_path(@page),
                   :id => "assign_button",
                   :class => "button#{ ' disabled' if @page.assigned_to == current_user || !current_user.able_to_edit?(@page) } middle",
                   :target => "_top" %>
@@ -66,27 +66,27 @@
                   :target => "_top" %>
 
       <%= link_to "<span>Edit Properties</span>".html_safe,
-                  [:edit, :cms, @page],
+                  [:edit, @page],
                   :id => "edit_properties_button",
                   :class => "spacer button#{ ' disabled' unless current_user.able_to_edit?(@page) }",
                   :target => "_top" %>
 
       <%= link_to "<span>List Versions</span>".html_safe,
-                  versions_cms_page_path(@page),
+                  cms.versions_page_path(@page),
                   :class => "spacer button#{ ' disabled' unless current_user.able_to_edit?(@page) }",
                   :target => "_top" %>
 
       <%= able_to? :publish_content do %>
           <% if @page.draft_version? %>
               <%= link_to "<span><span class=\"delete_img\">&nbsp;</span>Delete</span>".html_safe,
-                          [:cms, @page],
+                          [@page],
                           :id => "delete_button",
                           :title => "Are you sure you want to delete '#{@page.name}'?",
                           :target => "_top",
                           :class => "spacer button confirm_with_title http_delete#{ ' disabled' unless current_user.able_to_publish?(@page) }" %>
           <% else %>
               <%= link_to "<span>Revert to this Version</span>".html_safe,
-                          revert_to_cms_page_path(@page, @page.version),
+                          cms.revert_page_path(@page, @page.version),
                           :id => "revert_button",
                           :class => "button http_put",
                           :target => "_top" %>

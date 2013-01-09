@@ -28,6 +28,6 @@ Gem::Specification.new do |spec|
   spec.extra_rdoc_files = ["README.markdown"]
 
   spec.add_dependency('mobylette', "~> 1.6.0")
-  spec.add_dependency('browsercms', "~> 3.3.3")
+  spec.add_dependency('browsercms', "~> 3.5.4")
 
 end
