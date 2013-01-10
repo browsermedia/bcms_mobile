@@ -60,7 +60,7 @@
                   :target => "_top" %>
 
       <%= link_to "<span>Complete Task</span>".html_safe,
-                  @page.current_task ? complete_cms_task_path(@page.current_task) : '#',
+                  @page.current_task ? cms.complete_task_path(@page.current_task) : '#',
                   :id => "complete_task_button",
                   :class => "http_put button#{ ' disabled' if @page.assigned_to != current_user || !current_user.able_to_edit?(@page) } right",
                   :target => "_top" %>
